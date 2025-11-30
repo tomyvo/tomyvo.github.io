@@ -20,7 +20,24 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-NPC6QSRJ');</script>
   <!-- End Google Tag Manager -->
-    
+
+<!--n8n webhook-->       
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  await fetch("https://your-n8n-domain/webhook/contact-form", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }); 
+        
+  alert("Nachricht gesendet!"); // optional
+});
+</script>
+        
   <meta name="google-site-verification" content="roXh-XwCG3tDUqDHyWB1nTnFd5Bwdh74lThnuCS93R4" />
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
