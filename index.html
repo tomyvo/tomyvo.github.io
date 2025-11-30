@@ -803,36 +803,79 @@
             <div class="contact-form card" data-aos="fade-up" data-aos-delay="300">
               <div class="card-body p-4 p-lg-5">
 
-                <form id="contactForm" class="php-email-form">
-                  <div class="row gy-4">
+<form id="contactForm">
+  <div class="row gy-4">
 
-                    <div class="col-12">
-                      <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                    </div>
+    <div class="col-12">
+      <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+    </div>
 
-                    <div class="col-12 ">
-                      <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                    </div>
+    <div class="col-12">
+      <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+    </div>
 
-                    <div class="col-12">
-                      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                    </div>
+    <div class="col-12">
+      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+    </div>
 
-                    <div class="col-12">
-                      <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                    </div>
+    <div class="col-12">
+      <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+    </div>
 
-                    <div class="col-12 text-center">
-                      <div class="loading">Loading</div>
-                      <div class="error-message"></div>
-                      <div class="sent-message">Your message has been sent. Thank you!</div>
+    <div class="col-12 text-center">
+      <div class="loading" style="display:none;">Loading</div>
+      <div class="error-message" style="display:none;"></div>
+      <div class="sent-message" style="display:none;">Your message has been sent. Thank you!</div>
 
-                      <button type="submit" class="btn btn-submit w-100">Submit Message</button>
-                    </div>
+      <button type="submit" class="btn btn-submit w-100">Submit Message</button>
+    </div>
 
-                  </div>
-                </form>
+  </div>
+</form>
 
+<!-- n8n Section -->
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const loading = document.querySelector(".loading");
+  const errorMessage = document.querySelector(".error-message");
+  const sentMessage = document.querySelector(".sent-message");
+
+  // Reset UI
+  loading.style.display = "block";
+  errorMessage.style.display = "none";
+  sentMessage.style.display = "none";
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const res = await fetch("http://localhost:5678/webhook-test/5773ec0b-d62d-4a99-87d6-59a29e3f707a", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    loading.style.display = "none";
+
+    if (res.ok) {
+      sentMessage.style.display = "block";
+      this.reset();
+    } else {
+      errorMessage.innerText = "Fehler beim Senden!";
+      errorMessage.style.display = "block";
+    }
+  } catch {
+    loading.style.display = "none";
+    errorMessage.innerText = "Netzwerkfehler!";
+    errorMessage.style.display = "block";
+  }
+});
+</script>
+<!-- /n8n Section -->
+
+                      
               </div>
             </div>
           </div>
@@ -843,37 +886,6 @@
 
     </section><!-- /Contact Section -->
 
-<!-- /n8n Section -->
-<script>
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
-
-  // 💡 Dein n8n Webhook URL:
-  const webhookUrl = "http://localhost:5678/webhook-test/5773ec0b-d62d-4a99-87d6-59a29e3f707a";
-
-  try {
-    const res = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-
-    if(res.ok){
-      document.querySelector(".sent-message").style.display = "block";
-    } else {
-      document.querySelector(".error-message").innerText = "Fehler beim Senden!";
-      document.querySelector(".error-message").style.display = "block";
-    }
-  } catch (err) {
-    document.querySelector(".error-message").innerText = "Netzwerkfehler!";
-    document.querySelector(".error-message").style.display = "block";
-  }
-});
-</script>
-<!-- /n8n Section -->
           
   </main>
 
