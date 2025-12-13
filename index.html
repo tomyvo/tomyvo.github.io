@@ -47,6 +47,82 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+
+<!-- n8n Chatbot Styles -->
+<style>
+  #chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: 420px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    z-index: 99999;
+  }
+
+  #chat-header {
+    background: #0d6efd;
+    color: white;
+    padding: 12px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  #chat-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: #f8f9fa;
+  }
+
+  .message {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 14px;
+    max-width: 80%;
+    font-size: 14px;
+  }
+
+  .user {
+    background: #0d6efd;
+    color: white;
+    margin-left: auto;
+  }
+
+  .bot {
+    background: #e9ecef;
+    color: #000;
+  }
+
+  #chat-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+
+  #chat-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+
+  #chat-send {
+    padding: 10px 14px;
+    background: #0d6efd;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+
+        
 </head>
 
 <body class="index-page">
@@ -1042,6 +1118,59 @@ document.getElementById("contactForm").addEventListener("submit", async function
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+<!-- n8n Chatbot -->
+<div id="chat-widget">
+  <div id="chat-header">🤖 KI Chat</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input-area">
+    <input id="chat-input" type="text" placeholder="Nachricht schreiben..." />
+    <button id="chat-send">➤</button>
+  </div>
+</div>
+
+<script>
+  const webhookUrl = "https://christianduren.app.n8n.cloud/webhook/8715b2dc-ff23-4a61-bb7c-2be1c7c0bc91";
+
+  const messages = document.getElementById("chat-messages");
+  const input = document.getElementById("chat-input");
+  const sendBtn = document.getElementById("chat-send");
+
+  function addMessage(text, sender) {
+    const div = document.createElement("div");
+    div.className = "message " + sender;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    addMessage(msg, "user");
+    input.value = "";
+
+    try {
+      const res = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      });
+
+      const data = await res.json();
+      addMessage(data.reply || "Keine Antwort erhalten", "bot");
+    } catch (e) {
+      addMessage("⚠️ Fehler bei der Verbindung", "bot");
+    }
+  }
+
+  sendBtn.onclick = sendMessage;
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+
 
 </body>
 
