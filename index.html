@@ -1180,27 +1180,42 @@ document.getElementById("contactForm").addEventListener("submit", async function
 <div id="chat-widget">
   <div id="chat-header">🤖 KI Chat</div>
   <div id="chat-messages"></div>
+  <div id="typing-indicator" class="typing hidden">
+    <span></span><span></span><span></span>
+  </div>
   <div id="chat-input-area">
     <input id="chat-input" type="text" placeholder="Nachricht schreiben..." />
     <button id="chat-send">➤</button>
   </div>
 </div>
 
+
+<!-- N8N chatbot-->
 <script>
+  /* ===============================
+     SESSION
+  =============================== */
+  let sessionId = localStorage.getItem("chat_session_id");
 
-let sessionId = localStorage.getItem("chat_session_id");
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem("chat_session_id", sessionId);
+  }
 
-if (!sessionId) {
-  sessionId = crypto.randomUUID();
-  localStorage.setItem("chat_session_id", sessionId);
-}
-
-  const webhookUrl = "https://christianduren.app.n8n.cloud/webhook/8715b2dc-ff23-4a61-bb7c-2be1c7c0bc91";
+  /* ===============================
+     CONFIG
+  =============================== */
+  const webhookUrl =
+    "https://christianduren.app.n8n.cloud/webhook/8715b2dc-ff23-4a61-bb7c-2be1c7c0bc91";
 
   const messages = document.getElementById("chat-messages");
   const input = document.getElementById("chat-input");
   const sendBtn = document.getElementById("chat-send");
+  const typingIndicator = document.getElementById("typing-indicator");
 
+  /* ===============================
+     UI HELPERS
+  =============================== */
   function addMessage(text, sender) {
     const div = document.createElement("div");
     div.className = "message " + sender;
@@ -1209,6 +1224,19 @@ if (!sessionId) {
     messages.scrollTop = messages.scrollHeight;
   }
 
+  function showTyping() {
+    typingIndicator.classList.remove("hidden");
+    messages.appendChild(typingIndicator);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function hideTyping() {
+    typingIndicator.classList.add("hidden");
+  }
+
+  /* ===============================
+     SEND MESSAGE
+  =============================== */
   async function sendMessage() {
     const msg = input.value.trim();
     if (!msg) return;
@@ -1216,25 +1244,37 @@ if (!sessionId) {
     addMessage(msg, "user");
     input.value = "";
 
+    showTyping(); // 🤖 KI denkt
+
     try {
       const res = await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: msg, sessionId: sessionId })
+        body: JSON.stringify({
+          message: msg,
+          sessionId: sessionId
+        })
       });
 
       const data = await res.json();
+
+      hideTyping(); // 🤖 KI fertig
       addMessage(data.reply || "Keine Antwort erhalten", "bot");
     } catch (e) {
+      hideTyping();
       addMessage("⚠️ Fehler bei der Verbindung", "bot");
     }
   }
 
+  /* ===============================
+     EVENTS
+  =============================== */
   sendBtn.onclick = sendMessage;
   input.addEventListener("keydown", e => {
     if (e.key === "Enter") sendMessage();
   });
 </script>
+
 
 
 </body>
