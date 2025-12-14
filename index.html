@@ -176,6 +176,51 @@
       transform: translateY(0);
     }
   }
+
+/* ===============================
+   TYPING INDICATOR (3 DOTS)
+=============================== */
+
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  width: fit-content;
+
+  background: #151f1c;
+  border: 1px solid rgba(0,255,156,0.25);
+  box-shadow: inset 0 0 8px rgba(0,255,156,0.12);
+}
+
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: var(--neon-green);
+  border-radius: 50%;
+  animation: typingDots 1.4s infinite ease-in-out;
+  box-shadow: 0 0 8px rgba(0,255,156,0.9);
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDots {
+  0%   { opacity: 0.2; transform: translateY(0); }
+  20%  { opacity: 1;   transform: translateY(-4px); }
+  40%  { opacity: 0.2; transform: translateY(0); }
+}
+
+.hidden {
+  display: none;
+}
 </style>
 
 
@@ -1180,9 +1225,13 @@ document.getElementById("contactForm").addEventListener("submit", async function
 <div id="chat-widget">
   <div id="chat-header">🤖 KI Chat</div>
   <div id="chat-messages"></div>
-  <div id="typing-indicator" class="typing hidden">
-    <span></span><span></span><span></span>
-  </div>
+
+<div id="typing-indicator" class="typing hidden">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+        
   <div id="chat-input-area">
     <input id="chat-input" type="text" placeholder="Nachricht schreiben..." />
     <button id="chat-send">➤</button>
