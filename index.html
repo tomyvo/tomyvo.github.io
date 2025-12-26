@@ -67,7 +67,7 @@
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.webp" alt=""> -->
         <h1 class="logo-design">Tomy Vo</h1>
-        <img src="bilder/tuyvo-logo-transparent.png" class="logo-design">
+        <img src="bilder/tuyvo-logo-transparent.png" class="logo-design" alt="Tomy Vo Logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -82,10 +82,19 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <div class="header-social-links">
-        <a href="https://github.com/tomyvo" target="_blank"><i class="bi bi-github"></i></a>
-        <a href="https://www.instagram.com/tomysss_world" target="_blank"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/tomy-vo-036753359" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <div class="header-social-links d-flex align-items-center gap-3">
+
+        <!-- Dark Mode Toggle -->
+        <button id="themeToggle"
+                class="btn btn-sm btn-outline-secondary"
+                aria-label="Toggle dark mode"
+                type="button">
+          🌙
+        </button>
+
+        <a href="https://github.com/tomyvo" target="_blank" rel="noopener"><i class="bi bi-github" aria-label="GitHub"></i></a>
+        <a href="https://www.instagram.com/tomysss_world" target="_blank" rel="noopener"><i class="bi bi-instagram" aria-label="Instagram"></i></a>
+        <a href="https://www.linkedin.com/in/tomy-vo-036753359" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-label="LinkedIn"></i></a>
       </div>
 
     </div>
@@ -306,26 +315,6 @@
             </ul>
           </div>
           <div class="row g-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
-
-        <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-web">
-              <div class="portfolio-card">
-                <div class="portfolio-image">
-                  <img src="bilder/golden_fitness.png" alt="" loading="lazy">
-                  <div class="portfolio-overlay">
-                    <div class="portfolio-actions">
-                      <a href="https://github.com/tomyvo/golden-fitness" target="_blank" class="details-link"><i class="bi bi-eye"></i></a>
-                      <a href="https://tomyvo.github.io/golden-fitness/" target="_blank" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="portfolio-content">
-                  <span class="category">AI-Powered Website</span>
-                  <h3>Golden Fitness</h3>
-                <p>A modern fitness & nutrition website built with vanilla HTML, CSS, and JavaScript  no frameworks, no build tools, no complexity.
-                        Clean code, beautiful design, and a strong focus on performance, usability, and sustainability. All empowered by the power of AI!</p>
-                </div>
-              </div>
-        </div><!-- End Portfolio Item -->  
 
         <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-web">
               <div class="portfolio-card">
@@ -756,34 +745,6 @@
 
           <div class="swiper-wrapper">
 
-        <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="row">
-                  <div class="col-lg-8">
-                    <h2>A Remarkable Example of Technical Excellence and Discipline</h2>
-                    <p>
-                     "It is truly remarkable what Tomy has achieved. I met Tomy at the gym, and it quickly became clear that he is not only highly disciplined and physically dedicated, but also exceptionally talented in the fields of technology and artificial intelligence. He developed a high-quality website that delivers fully personalized workout and nutrition plans tailored to individual users, combining technical excellence with real practical value."
-                    </p>
-                    <p>
-                      "I am genuinely grateful to have met Tomy, as he is one of the most impressive and driven individuals I have encountered. While many people focus on entertainment or leisure activities, Tomy consistently invests his time in coding, building scalable solutions, and developing business ideas. Especially at his age, this level of focus, professionalism, and ambition is truly outstanding. I wish him continued success and am confident that he has a very promising future ahead."
-                    </p>
-                    <div class="profile d-flex align-items-center">
-                      <img src="bilder/onur.png" class="profile-img" alt="">
-                      <div class="profile-info">
-                        <h3>Onur K.</h3>
-                        <span>Client</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 d-none d-lg-block">
-                    <div class="featured-img-wrapper">
-                      <img src="bilder/onur.png" class="featured-img" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Testimonial Item -->
-
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="row">
@@ -794,7 +755,6 @@
                     </p>
                     <p>
                       "In addition, he successfully participated in the elective English Conversation course and achieved an outstanding average of 1.08, reflecting his academic excellence."
-                    </p>
                     <div class="profile d-flex align-items-center">
                       <img src="bilder/ickstatt.png" class="profile-img" alt="">
                       <div class="profile-info">
@@ -888,7 +848,7 @@
                         He taught me a great deal and showed me possibilities I had never considered before. I have no hesitation in saying that he is truly outstanding. One particularly impactful project he developed for me was an AI system that analyzed basketball statistics to calculate the probability of a player reaching specific professional leagues. As someone who aspires to become an NBA player, this project was incredibly valuable and insightful for me, and I was extremely satisfied with the results."
                     </p>
                     <div class="profile d-flex align-items-center">
-                      <img src="bilder/kemal_2.jpg" class="profile-img" alt="">
+                      <img src="bilder/kemal.png" class="profile-img" alt="">
                       <div class="profile-info">
                         <h3>Kemal L.</h3>
                         <span>Client</span>
@@ -897,7 +857,7 @@
                   </div>
                   <div class="col-lg-4 d-none d-lg-block">
                     <div class="featured-img-wrapper">
-                      <img src="bilder/kemal_2.jpg" class="featured-img" alt="">
+                      <img src="bilder/kemal.png" class="featured-img" alt="">
                     </div>
                   </div>
                 </div>
