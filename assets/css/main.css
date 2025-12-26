@@ -87,6 +87,294 @@ h6 {
   font-family: var(--heading-font);
 }
 
+
+/* Dark Mode: Make the entire website dark
+------------------------------*/
+body.dark-mode {
+  --background-color: #0f0f0f;
+  --surface-color: #181818;
+  --default-color: #eaeaea;
+  --heading-color: #b5b5b5;
+  --accent-color: #9ca3af;
+  --contrast-color: #181818;
+  background-color: var(--background-color) !important;
+  color: var(--default-color) !important;
+}
+
+/* Surface backgrounds (including About, Testimonials, Contact sections) */
+body.dark-mode,
+body.dark-mode .header,
+body.dark-mode .card,
+body.dark-mode .portfolio-card,
+body.dark-mode .service-item,
+body.dark-mode .section,
+body.dark-mode .container,
+body.dark-mode .php-email-form .loading,
+body.dark-mode .php-email-form .sent-message,
+body.dark-mode .php-email-form .error-message,
+body.dark-mode .modal-content,
+body.dark-mode .form-control,
+body.dark-mode .form-select,
+body.dark-mode .dropdown-menu,
+body.dark-mode .offcanvas,
+body.dark-mode .navmenu,
+body.dark-mode .navbar,
+body.dark-mode .footer,
+body.dark-mode .blog,
+body.dark-mode .about,
+body.dark-mode .hero,
+body.dark-mode .contact,
+body.dark-mode .testimonials,
+body.dark-mode .testimonials-section,
+body.dark-mode .about-section,
+body.dark-mode .contact-section {
+  background-color: var(--surface-color) !important;
+}
+
+/* About, Testimonials, Contact Section specific backgrounds and text (ensure coverage) */
+body.dark-mode #about,
+body.dark-mode .about,
+body.dark-mode .about-section {
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+}
+body.dark-mode #testimonials,
+body.dark-mode .testimonials,
+body.dark-mode .testimonials-section {
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+}
+body.dark-mode #contact,
+body.dark-mode .contact,
+body.dark-mode .contact-section {
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--heading-color) !important;
+}
+
+/* headings in special sections About/Testimonials/Contact */
+body.dark-mode #about h1,
+body.dark-mode #about h2,
+body.dark-mode #about h3,
+body.dark-mode #about h4,
+body.dark-mode #testimonials h1,
+body.dark-mode #testimonials h2,
+body.dark-mode #testimonials h3,
+body.dark-mode #testimonials h4,
+body.dark-mode #contact h1,
+body.dark-mode #contact h2,
+body.dark-mode #contact h3,
+body.dark-mode #contact h4 {
+  color: var(--heading-color) !important;
+}
+
+body.dark-mode a {
+  color: var(--accent-color) !important;
+}
+body.dark-mode a:hover {
+  color: color-mix(in srgb, var(--accent-color), white 25%) !important;
+}
+
+/* Inputs, buttons, borders */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select,
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #222 !important;
+  color: #eaeaea !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode .btn,
+body.dark-mode button {
+  background-color: #222 !important;
+  color: #eaeaea !important;
+  border-color: var(--accent-color) !important;
+}
+body.dark-mode .btn-primary,
+body.dark-mode .btn.btn-primary {
+  background-color: var(--accent-color) !important;
+  color: #222 !important;
+}
+
+/* Misc override for cards, dropdowns, modals, etc */
+body.dark-mode .dropdown-menu,
+body.dark-mode .modal-content {
+  background-color: #181818 !important;
+  color: #eaeaea !important;
+  border-color: #333 !important;
+}
+
+/* Remove strong box-shadow in dark for popups/cards */
+body.dark-mode .card,
+body.dark-mode .portfolio-card,
+body.dark-mode .service-item,
+body.dark-mode .modal-content,
+body.dark-mode .dropdown-menu {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7) !important;
+}
+
+body.dark-mode .php-email-form .sent-message,
+body.dark-mode .php-email-form .error-message,
+body.dark-mode .php-email-form .loading {
+  background: #232323 !important;
+  color: #eaeaea !important;
+}
+
+/* Special case: hero shapes */
+body.dark-mode .hero .hero-image .shape-1 {
+  background-color: rgba(31, 177, 120, 0.75) !important;
+}
+body.dark-mode .hero .hero-image .shape-2 {
+  background-color: rgba(52, 220, 170, 0.65) !important;
+}
+
+/* For tables */
+body.dark-mode table,
+body.dark-mode thead,
+body.dark-mode tbody,
+body.dark-mode th,
+body.dark-mode td {
+  background-color: #1b1b1b !important;
+  color: #eaeaea !important;
+  border-color: #222 !important;
+}
+
+/* For footers if present */
+body.dark-mode .footer {
+  background-color: #111 !important;
+  color: #ccc !important;
+}
+
+/* For section dividers and hr */
+body.dark-mode hr,
+body.dark-mode .divider {
+  border-color: #333 !important;
+}
+
+/* Scrollbar styling (optional) */
+body.dark-mode ::-webkit-scrollbar {
+  background: #111;
+}
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #282828;
+  border-radius: 10px;
+}
+body.dark-mode ::selection {
+  background: #7dd3fc;
+  color: #181818;
+}
+
+/* ================= DARK MODE FIX: light-background ================= */
+
+/* Override CSS variables for light-background sections in dark mode */
+body.dark-mode section.light-background {
+  --background-color: #181818 !important;
+  --surface-color: #181818 !important;
+  background-color: var(--surface-color) !important;
+}
+
+/* About */
+body.dark-mode #about,
+body.dark-mode #about.light-background,
+body.dark-mode #about .container,
+body.dark-mode #about .section-title,
+body.dark-mode #about .about-content,
+body.dark-mode #about .about-image,
+body.dark-mode #about .personal-info,
+body.dark-mode #about .signature {
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+}
+
+/* Testimonials */
+body.dark-mode #testimonials,
+body.dark-mode #testimonials.light-background,
+body.dark-mode #testimonials .container,
+body.dark-mode #testimonials .section-title,
+body.dark-mode #testimonials .testimonial-item,
+body.dark-mode #testimonials .swiper-wrapper {
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+}
+
+/* Contact */
+body.dark-mode #contact,
+body.dark-mode #contact.light-background,
+body.dark-mode #contact .container,
+body.dark-mode #contact .section-title,
+body.dark-mode #contact .content,
+body.dark-mode #contact .contact-info {
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+}
+
+body.dark-mode #contact i,
+body.dark-mode #contact .info-item,
+body.dark-mode #contact .info-item span,
+body.dark-mode #contact .map-link {
+  color: var(--accent-color) !important;
+}
+
+/* Ensure all text elements in light-background sections use dark mode colors */
+body.dark-mode section.light-background p,
+body.dark-mode section.light-background span,
+body.dark-mode section.light-background .lead,
+body.dark-mode section.light-background .subtitle {
+  color: var(--default-color) !important;
+}
+
+/* About section specific text elements */
+body.dark-mode #about .about-content .subtitle,
+body.dark-mode #about .about-content .lead,
+body.dark-mode #about .about-content p,
+body.dark-mode #about .personal-info {
+  background-color: #222 !important;
+  color: var(--default-color) !important;
+}
+body.dark-mode #about .personal-info .label,
+body.dark-mode #about .personal-info .value,
+body.dark-mode #about .signature .signature-info h4,
+body.dark-mode #about .signature .signature-info p {
+  color: var(--default-color) !important;
+}
+
+/* Testimonials section specific text elements */
+body.dark-mode #testimonials .testimonial-item {
+  background-color: #222 !important;
+}
+body.dark-mode #testimonials .testimonial-item h2,
+body.dark-mode #testimonials .testimonial-item p,
+body.dark-mode #testimonials .testimonial-item .profile .profile-info h3,
+body.dark-mode #testimonials .testimonial-item .profile .profile-info span {
+  color: var(--default-color) !important;
+}
+
+/* Contact section specific text elements */
+body.dark-mode #contact .content h2,
+body.dark-mode #contact .content .lead,
+body.dark-mode #contact .content p {
+  color: var(--default-color) !important;
+}
+
+/* Contact form card */
+body.dark-mode #contact .contact-form,
+body.dark-mode #contact .contact-form .card-body {
+  background-color: #222 !important;
+  color: var(--default-color) !important;
+}
+
+
+
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {
