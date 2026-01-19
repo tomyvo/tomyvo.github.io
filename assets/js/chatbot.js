@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===============================
   // CONFIG
   // ===============================
-  const webhookUrl = "https://christianhandy.app.n8n.cloud/webhook/8715b2dc-ff23-4a61-bb7c-2be1c7c0bc91";
+  const webhookUrl = "https://tomythanh123.app.n8n.cloud/webhook/portfolio_website_chatbot";
   const messages = document.getElementById("chat-messages");
   const input = document.getElementById("chat-input");
   const sendBtn = document.getElementById("chat-send");
@@ -85,4 +85,5 @@ document.addEventListener("DOMContentLoaded", () => {
     bubble.style.display = "flex";
   });
 });
+
 
